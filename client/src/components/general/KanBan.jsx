@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Kanban.scss";
-import { projects } from "../../sample_data/projects.js";
+import { projects as initialProjects } from "../../sample_data/projects.js";
 import JobCard from "./JobCard";
 
 // Utility function to format stage names for display
@@ -56,6 +56,7 @@ const fetchStagesFromPipeline = async (pipeline) => {
 
 function KanBan({ pipeline }) {
   const [stages, setStages] = useState([]);
+  const [projects, setProjects] = useState(initialProjects);
   const [loading, setLoading] = useState(true);
 
   // Fetch stages when the pipeline changes
@@ -69,6 +70,14 @@ function KanBan({ pipeline }) {
 
     fetchStages();
   }, [pipeline]);
+
+  const handleProjectUpdate = (updatedProject, index) => {
+    setProjects((prevProjects) => {
+      const newProjects = [...prevProjects];
+      newProjects[index] = updatedProject; // Update the specific project
+      return newProjects;
+    });
+  };
 
   if (loading) {
     return <div className="kanban-loader">Loading stages...</div>;
@@ -84,7 +93,7 @@ function KanBan({ pipeline }) {
 
   return (
     <div className="kanban">
-      {stages.map((stage, index) => (
+      {stages?.map((stage, index) => (
         <div key={index} className="kanban-column">
           <div className="kanban-header">{formatStageName(stage)}</div>
           <div className="kanban-content">
@@ -95,7 +104,17 @@ function KanBan({ pipeline }) {
                   normalizeStageName(stage)
               )
               ?.map((project, idx) => (
-                <JobCard key={idx} project={project} pipeline={pipeline} />
+                <JobCard
+                  key={idx}
+                  project={project}
+                  pipeline={pipeline}
+                  onProjectUpdate={(updatedProject) =>
+                    handleProjectUpdate(
+                      updatedProject,
+                      projects.indexOf(project)
+                    )
+                  }
+                />
               ))}
           </div>
         </div>

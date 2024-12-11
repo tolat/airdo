@@ -32,10 +32,12 @@ const fetchFromBackend = async (prompt) => {
   }
 };
 
-function JobCard({ project, pipeline }) {
+function JobCard({ project, pipeline, onProjectUpdate }) {
   const [summary, setSummary] = useState("Fetching summary...");
   const [actions, setActions] = useState([]);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalInput, setModalInput] = useState(project);
 
   // Parse fields from the project string
   const name = parseProjectField(project, "Name");
@@ -75,7 +77,13 @@ function JobCard({ project, pipeline }) {
   useEffect(() => {
     fetchSummary();
     fetchActions();
-  }, [pipeline, log]); // Re-fetch when pipeline or log changes
+  }, [pipeline, log, project]); // Re-fetch when pipeline or log changes
+
+  // Function to handle modal submission
+  const handleModalSubmit = () => {
+    onProjectUpdate(modalInput); // Update the parent with new project data
+    setIsModalOpen(false); // Close the modal
+  };
 
   return (
     <div className={`job-card ${isCollapsed ? "collapsed" : ""}`}>
@@ -105,6 +113,12 @@ function JobCard({ project, pipeline }) {
           <div className="job-card-section">
             <h4>✨ Summary</h4>
             <p>{summary}</p>
+            <button
+              className="show-log-button"
+              onClick={() => setIsModalOpen(true)}
+            >
+              Show Log
+            </button>
           </div>
 
           {/* Actions */}
@@ -132,6 +146,35 @@ function JobCard({ project, pipeline }) {
             </div>
           </div>
         </>
+      )}
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <h4 className="modal-header">Edit Log</h4>
+            <textarea
+              value={modalInput}
+              onChange={(e) => setModalInput(e.target.value)}
+              rows="10"
+              className="modal-textarea"
+            ></textarea>
+            <div className="modal-actions">
+              <button
+                className="modal-submit-button"
+                onClick={handleModalSubmit}
+              >
+                Submit
+              </button>
+              <button
+                className="modal-close-button"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

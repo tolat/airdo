@@ -44,8 +44,6 @@ function JobCard({ project, pipeline, onProjectUpdate }) {
   const address = parseProjectField(project, "Address");
   const log = parseProjectField(project, "Log");
 
-  console.log(log);
-
   // Function to fetch summary
   const fetchSummary = async () => {
     const prompt = `

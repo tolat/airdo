@@ -1,0 +1,48 @@
+.kanban {
+  display: flex; /* Use flexbox to arrange columns horizontally */
+  gap: 1rem; /* Add space between columns */
+  width: max-content; /* Ensure the Kanban board only takes up as much space as needed */
+  overflow-x: auto; /* Allow horizontal scrolling if content exceeds parent width */
+  padding: 2rem;
+}
+
+.kanban-column {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Ensure content stays inside column boundaries */
+}
+
+.kanban-header {
+  padding: 1rem;
+  font-size: 1.3rem; /* Large font for headers */
+  text-align: left;
+  min-width: 12rem;
+  color: #000; /* Black text */
+  border-bottom: 2px solid #bcbcbc; /* Divider between header and content */
+  font-weight: bold;
+}
+
+.kanban-content {
+  flex: 1; /* Content will take up the remaining height of the column */
+  width: fit-content;
+}
+
+.kanban-loader {
+  font-size: 1.5rem;
+  color: #555;
+  text-align: center;
+  padding: 2rem;
+}
+
+.kanban-no-stages {
+  font-size: 1.5rem;
+  color: #888;
+  text-align: center;
+  padding: 2rem;
+}
+
+.kanban {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+}

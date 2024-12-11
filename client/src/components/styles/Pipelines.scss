@@ -1,0 +1,59 @@
+.pipelines {
+  padding: 2rem; /* Padding around the entire component */
+  display: flex;
+  flex-direction: column; /* Ensures the header and content are stacked vertically */
+  align-items: flex-start; /* Align content to the left */
+  flex: 1; /* Take up remaining width */
+  box-sizing: border-box;
+  width: auto;
+  overflow: scroll;
+  /* Hide scrollbar for all browsers */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+
+  .pipelines-header {
+    font-size: 3rem; /* Very large font size */
+    font-weight: bold;
+    margin-top: 0rem; /* Add spacing below the header */
+    margin-left: 0;
+    padding: 2rem; /* Padding inside the header */
+    padding-top: 0rem;
+    width: 100%; /* Header spans the full width */
+    color: #333;
+    box-sizing: border-box;
+  }
+
+  .pipelines-content {
+    font-size: 1.2rem; /* Base font size for the content */
+    line-height: 1.6; /* Improves readability */
+    width: 100%;
+    box-sizing: border-box;
+    overflow: scroll;
+    /* Hide scrollbar for all browsers */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+  }
+}
+
+.pipelines-header-container {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.pipelines-textarea {
+  width: 100%;
+  margin: 1rem;
+}
+
+.pipelines-submit-button {
+  font-size: 1rem;
+  margin: 1rem;
+  border-radius: 0;
+  background-color: #333;
+}
+
+.pipelines-input-section {
+  display: flex;
+  flex-grow: 1;
+}

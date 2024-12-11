@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f3f3f3; /* Optional: Light background color */
+  overflow: scroll;
+  /* Hide scrollbar for all browsers */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  box-sizing: border-box;
+}

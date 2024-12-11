@@ -1,0 +1,103 @@
+.job-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+  margin: 0.5rem;
+  max-width: 20rem;
+
+  /* Header */
+  .job-card-header {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000; /* Black text */
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+
+
+  /* Address */
+  .job-card-address {
+    font-size: 0.9rem;
+    color: #676767; /* Gray text */
+    margin-bottom: 1rem;
+  }
+
+  &.collapsed {
+    overflow: hidden;
+  }
+
+  .toggle-button {
+    border: none;
+    color: #333;
+    text-decoration: underline;
+    outline: none !important;
+    cursor: pointer;
+    font-size: 0.7rem;
+    display: flex;
+    background-color: transparent;
+  }
+
+  /* Section */
+  .job-card-section {
+    margin-bottom: 1rem;
+
+    h4 {
+      font-size: 1.2rem; /* Larger header font size */
+      margin: 0 0 0.5rem 0;
+      font-weight: bold;
+      color: #000; /* Black text */
+    }
+
+    p {
+      font-size: 0.9rem;
+      margin: 0;
+      color: #000; /* Black text */
+    }
+
+    /* Actions List */
+    .actions-list {
+      display: flex;
+      flex-direction: column; /* Display actions in a column */
+      gap: 0.5rem; /* Space between action items */
+
+      .action-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem; /* Space between checkbox and text */
+        font-size: 0.9rem;
+        color: #000; /* Black text */
+      }
+
+      .action-checkbox {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+
+    /* Communications List */
+    .communications-list {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+
+      .communication-button {
+        outline: none !important;
+        background-color: #f0f0f0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        cursor: pointer;
+        color: #000;
+
+        &:hover {
+          background-color: #e0e0e0;
+        }
+      }
+    }
+  }
+}

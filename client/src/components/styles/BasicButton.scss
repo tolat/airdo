@@ -1,0 +1,26 @@
+.basic-button {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  outline: none !important;
+  color: #333;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  border-radius: 2px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+.basic-button.light{
+    color: whitesmoke;
+}
+
+.basic-button.dark{
+    color: #333;
+}

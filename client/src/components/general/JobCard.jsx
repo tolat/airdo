@@ -3,7 +3,7 @@ import "../styles/JobCard.scss";
 
 // Utility function to parse project string
 const parseProjectField = (projectString, field) => {
-  const regex = new RegExp(`\\$${field}:\\s*(.*)`, "i");
+  const regex = new RegExp(`\\$${field}:\\s*([^$]*)`, "i");
   const match = projectString.match(regex);
   return match ? match[1].trim() : "Not Available";
 };
@@ -44,6 +44,8 @@ function JobCard({ project, pipeline, onProjectUpdate }) {
   const address = parseProjectField(project, "Address");
   const log = parseProjectField(project, "Log");
 
+  console.log(log);
+
   // Function to fetch summary
   const fetchSummary = async () => {
     const prompt = `
@@ -53,9 +55,11 @@ function JobCard({ project, pipeline, onProjectUpdate }) {
 
       Based on the above information, give a concise, one 
       to two short sentence summary of where the project is 
-      at in the pipeline. Make sure to note any special cases 
-      or requests made by the client. 
+      at in the pipeline. Make sure to note any items marekd with exclamation marks, 
+      or anythings that look unusual such as the client wanting to stop the install, 
+      special requests, etc.
     `;
+    setSummary("Fetching summary...");
     const result = await fetchFromBackend(prompt);
     setSummary(result || "Error fetching summary.");
   };
@@ -67,7 +71,9 @@ function JobCard({ project, pipeline, onProjectUpdate }) {
 
       Log: ${log}
 
-      Based on the above information, return the available deliverables for the pipeline phase this job is in as a JSON array of strings, where each string represents a deliverable.
+      Based on the above information, return the available deliverables 
+      for the pipeline phase this job is in as a JSON array of strings, 
+      where each string represents a deliverable.
     `;
     const result = await fetchFromBackend(prompt);
     setActions(result || []);
@@ -126,7 +132,7 @@ function JobCard({ project, pipeline, onProjectUpdate }) {
             <h4>Actions</h4>
             <div className="actions-list">
               {actions.length > 0
-                ? actions.map((action, index) => (
+                ? actions?.map((action, index) => (
                     <label key={index} className="action-item">
                       <input type="checkbox" className="action-checkbox" />
                       {action}
